@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Compressor - Speech Optimization</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎵 Audio Compressor</h1>
+            <p class="subtitle">Speech-Optimized Compression for MP3, MP4 & MPEG</p>
+        </header>
+
+        <main>
+            <div class="settings-section">
+                <h3>⚙️ Compression Settings</h3>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label for="targetSize">Target Size (per file):</label>
+                        <div class="input-group">
+                            <input type="number" id="targetSize" value="2" min="0.5" max="10" step="0.5">
+                            <select id="sizeUnit">
+                                <option value="MB" selected>MB</option>
+                                <option value="KB">KB</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="sampleRate">Sample Rate:</label>
+                        <select id="sampleRate">
+                            <option value="8000">8 kHz (Low)</option>
+                            <option value="16000" selected>16 kHz (Speech)</option>
+                            <option value="22050">22.05 kHz (Medium)</option>
+                            <option value="44100">44.1 kHz (High)</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="channels">Channels:</label>
+                        <select id="channels">
+                            <option value="1" selected>Mono</option>
+                            <option value="2">Stereo</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="bitrate">Bitrate:</label>
+                        <div class="input-group">
+                            <input type="number" id="bitrate" value="20" min="8" max="320" step="4">
+                            <span class="unit-label">kbps</span>
+                        </div>
+                        <small class="hint">Auto-calculated based on target size</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="upload-section">
+                <div class="drop-zone" id="dropZone">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="17 8 12 3 7 8" />
+                        <line x1="12" y1="3" x2="12" y2="15" />
+                    </svg>
+                    <h2>Drop files here or click to browse</h2>
+                    <p>Supports MP3 (max 50 MB), MP4 & MPEG (max 100 MB)</p>
+                    <input type="file" id="fileInput" multiple accept=".mp3,.mp4,.mpeg,.mpg" hidden>
+                </div>
+
+                <div class="file-requirements">
+                    <h3>📋 Requirements</h3>
+                    <ul>
+                        <li><strong>MP3 files:</strong> Maximum 50 MB</li>
+                        <li><strong>MP4/MPEG files:</strong> Maximum 100 MB</li>
+                        <li><strong>Output:</strong> 16 kHz, mono, 16-24 kbps MP3</li>
+                        <li><strong>Target size:</strong> 1-3 MB per file</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="files-list" id="filesList"></div>
+
+            <div class="actions" id="actions" style="display: none;">
+                <button class="btn btn-primary" id="compressBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    Compress All Files
+                </button>
+                <button class="btn btn-secondary" id="clearBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                    Clear All
+                </button>
+            </div>
+
+            <div class="progress-section" id="progressSection" style="display: none;">
+                <h3>Processing Files...</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-text" id="progressText">0 / 0 files processed</p>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <h3>✓ Compression Complete!</h3>
+                <div class="results-summary" id="resultsSummary"></div>
+                <button class="btn btn-success" id="downloadBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    Download ZIP Archive
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by FFmpeg | Speech-optimized compression</p>
+            <p class="note">💡 Tip: Make sure to run <code>python app.py</code> to start the server first!</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

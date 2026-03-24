@@ -1,0 +1,21 @@
+{
+    "name": "audio-compressor",
+    "version": "1.0.0",
+    "description": "Speech-optimized audio compressor for MP3, MP4, and MPEG files",
+    "main": "index.html",
+    "scripts": {
+        "start": "python -m http.server 8000",
+        "serve": "python -m http.server 8000"
+    },
+    "keywords": [
+        "audio",
+        "compression",
+        "speech",
+        "mp3",
+        "mp4",
+        "mpeg",
+        "ffmpeg"
+    ],
+    "author": "",
+    "license": "MIT"
+}
